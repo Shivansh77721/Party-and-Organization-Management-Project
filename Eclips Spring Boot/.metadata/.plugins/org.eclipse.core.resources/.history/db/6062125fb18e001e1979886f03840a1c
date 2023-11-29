@@ -1,0 +1,5 @@
+package com.springcrud.repository;
+
+public interface PartyRepository {
+
+}

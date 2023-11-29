@@ -1,0 +1,36 @@
+@RestController
+public class PartyController {
+
+    @Autowired
+    private PartyRepository partyRepository;
+
+    @GetMapping("/parties")
+    public List<Party> getAllParties() {
+        return partyRepository.findAll();
+    }
+
+    @GetMapping("/parties/{id}")
+    public Party getPartyById(@PathVariable Long id) {
+        return partyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Party not found with id :" + id));
+    }
+
+    @PostMapping("/parties")
+    public Party createParty(@RequestBody Party party) {
+        return partyRepository.save(party);
+    }
+
+    @PutMapping("/parties/{id}")
+    public Party updateParty(@PathVariable Long id, @RequestBody Party partyDetails) {
+        Party party = partyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Party not found with id :" + id));
+        party.setName(partyDetails.getName());
+        party.setDate(partyDetails.getDate());
+        party.setLocation(partyDetails.getLocation());
+        return partyRepository.save(party);
+    }
+
+    @DeleteMapping("/parties/{id}")
+    public ResponseEntity<?> deleteParty(@PathVariable Long id) {
+        partyRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+}

@@ -1,0 +1,8 @@
+package com.springcrud.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PartyRepository extends JpaRepository<Party, Long> {
+    // You can add custom queries here if needed
+}

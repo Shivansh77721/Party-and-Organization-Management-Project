@@ -1,0 +1,31 @@
+package com.springcrud.entity;
+
+import org.hibernate.annotations.Table;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import jakarta.persistence.GenerationType;
+
+@Table
+@EntityScan(name="Party")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+
+public class Party {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	 private int partyId;
+	    private String firstName;
+	    private String middleName;
+	    private String lastName;
+	    private String usename;
+	    private String City;
+//	    private Address Address;
+	    private String State;
+	    private String Country;
+	    private int ZipCode;
+	    private long PhoneNo;
+	    private double Possword;
+}
